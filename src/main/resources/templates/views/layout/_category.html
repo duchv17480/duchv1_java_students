@@ -1,13 +1,13 @@
-<div class="list-group">
-    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
-        <i class="fa-solid fa-book-open"></i> Danh mục
-    </button>
-    <button type="button" class="list-group-item list-group-item-action">Ung Dung Phan Mem</button>
-    <button type="button" class="list-group-item list-group-item-action">Lap Trinh Web</button>
-    <button type="button" class="list-group-item list-group-item-action">Ky Nang Song</button>
-    <button type="button" class="list-group-item list-group-item-action">Giao Tiep Tieng Anh Co Ban</button>
-    <button type="button" class="list-group-item list-group-item-action">Giao Tiep Tieng Anh Co Ban</button>
-    <button type="button" class="list-group-item list-group-item-action">Giao Tiep Tieng Anh Co Ban</button>
-    <button type="button" class="list-group-item list-group-item-action">Giao Tiep Tieng Anh Co Ban</button>
-    <button type="button" class="list-group-item list-group-item-action">Giao Tiep Tieng Anh Co Ban</button>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <b class="glyphicon glyphicon-briefcase"></b> Click to Marks
+    </div>
+    <div class="list-group">
+        <th:block th:each="c:${subjects}">
+            <a th:href="@{|/admin/marks?sid=${c.id}|}" class="list-group-item">
+                <b class="	glyphicon glyphicon-gift"></b>
+                <span th:text="${c.name}"></span>
+            </a>
+        </th:block>
+    </div>
 </div>

@@ -12,10 +12,10 @@
     <script src="/js/subject.js"></script>
     <script src="/js/mark.js"></script>
 </head>
-<body class="container-fluid p-0">
+<body class="container-fluid p-0" style="min-height: 100vh">
 <div th:replace="~{/views/layout/_baner}"></div>
 <div th:replace="~{/views/layout/_navbar}"></div>
-<div class="row" style="padding-top: 10px">
+<div class="row"  style="padding-top: 10px;min-height: 400px">
     <article class="col-sm-9">
         <div style="padding-left: 15px;">
             <main class="row" th:insert="${main}"></main>
