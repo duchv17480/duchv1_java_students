@@ -1,0 +1,61 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/views/layout/index :: dynamic (~{::main})}">
+    <main>
+        <h2 class="text-center">Student Manager</h2>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Birth day</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Birth place</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Entry point</th>
+                <th scope="col">Enrollment Obj</th>
+                <th scope="col">Section</th>
+                <th colspan="2">Thao Tac</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="list:${list}">
+                <td th:text="${list.firstName}"></td>
+                <td th:text="${list.lastName}"></td>
+                <td th:text="${list.birthDay}"></td>
+                <td th:text="${list.gender==1?'Male':'Female'}"></td>
+                <td th:text="${list.birthPlace}"></td>
+                <td th:text="${list.address}"></td>
+                <td th:text="${list.phone}"></td>
+                <td th:text="${list.entryPont}"></td>
+                <td th:text="${list.enrollmentObj==1?'Ưu tiên':'K ưu tiên'}"></td>
+                <td th:text="${list.section}"></td>
+                <td><a th:href="@{students/edit/{id}(id=${list.id})}" class="btn btn-primary">Edit</a></td>
+                <td>
+                    <input type="hidden" class="student_id" th:value="${list.id}">
+                    <a class="btn btn-danger deleteStudent">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+            <div class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Comfirm Delete</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure delete</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-primary" id="modal_delete" data-bs-dismiss="modal">
+                                Yes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </table>
+        <a th:href="@{students/create}" class="btn btn-info">Create</a>
+    </main>
+</div>

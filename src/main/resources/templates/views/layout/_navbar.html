@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg" style="background: lavenderblush">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/view}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/admin/users}">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/admin/students}">Student</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/admin/subjects}">Subject</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/admin/marks}"> Marks</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Tài khoản
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <th:block th:unless="${#request.remoteUser}">
+                            <li><a class="dropdown-item" th:href="@{/security/login/form}">Log In</a></li>
+                        </th:block>
+                        <th:block th:if="${#request.remoteUser}">
+                            <li><a class="dropdown-item" th:href="@{/security/logoff}">Log out</a></li>
+                        </th:block>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="https://www.facebook.com/ducfptpoly">FB Admin</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/users/formChange}">ChangePassword</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <span th:if="${#request.remoteUser}" class="m-2 text-info">
+                <a>Welcome: [[${#request.remoteUser}]]</a>
+            </span>
+        </div>
+    </div>
+</nav>

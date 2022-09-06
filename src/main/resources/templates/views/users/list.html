@@ -1,0 +1,49 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/views/layout/index :: dynamic (~{::main})}">
+    <main>
+        <h2 class="text-center">User Manager</h2>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>User name</th>
+                <th>Password</th>
+                <th>Full Name</th>
+                <th>Status</th>
+                <th colspan="2">Thao Tac</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="list : ${list}">
+                <td th:text="${list.username}"></td>
+                <td th:text="${list.password}"></td>
+                <td th:text="${list.fullname}"></td>
+                <td th:text="${list.status==0?'Un active':'Active'}"></td>
+                <td><a th:href="@{users/edit/{id}(id=${list.username})}" class="btn btn-primary">Edit</a></td>
+                <td>
+                    <input type="hidden" class="user_id" th:value="${list.username}">
+                    <a class="btn btn-danger delete">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+            <div class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Comfirm Delete</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure delete</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-primary" id="modal_delete" data-bs-dismiss="modal">
+                                Yes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </table>
+        <a th:href="@{users/create}" class="btn btn-info">Create</a>
+    </main>
+</div>

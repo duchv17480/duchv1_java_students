@@ -1,0 +1,23 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/views/layout/index :: dynamic (~{::main})}">
+    <main>
+        <h2 class="text-center">CREATE SUBJECT</h2>
+        <form th:action="@{/admin/subjects/store}" th:object="${subjects}" method="post">
+            <div class="mb-3 mt-3">
+                <label class="form-label">Name:</label>
+                <input type="text" class="form-control" th:field="*{name}">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Credits:</label>
+                <input class="form-control" th:field="*{credits}">
+                <span th:if="${#fields.hasErrors('credits')}" th:errors="*{credits}" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Semester:</label>
+                <input  class="form-control" th:field="*{semester}">
+                <span th:if="${#fields.hasErrors('semester')}" th:errors="*{semester}" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </main>
+</div>
