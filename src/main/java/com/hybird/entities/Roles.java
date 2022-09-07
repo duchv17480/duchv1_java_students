@@ -1,6 +1,7 @@
 
 package com.hybird.entities;
 
+import com.hybird.enums.EnumRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import javax.persistence.*;
 @Table()
 public class Roles {
     @Id
-    private String id;
+    private EnumRole id;
 
     private String name;
 

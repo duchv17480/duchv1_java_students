@@ -1,21 +1,15 @@
-package com.hybird.admin.controller;
+package com.hybird.controllers.admins;
 
 import com.hybird.entities.Marks;
-import com.hybird.entities.Students;
-import com.hybird.entities.Users;
-import com.hybird.repository.MarksRepository;
-import com.hybird.repository.StudentRepository;
+import com.hybird.repositories.MarksRepository;
 import com.hybird.service.MarksService;
 import com.hybird.service.StudentService;
 import com.hybird.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller

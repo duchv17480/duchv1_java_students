@@ -1,7 +1,7 @@
 package com.hybird.service;
 
 import com.hybird.entities.Users;
-import com.hybird.repository.UserRepository;
+import com.hybird.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

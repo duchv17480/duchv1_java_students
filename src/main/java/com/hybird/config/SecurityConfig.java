@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             try {
                 Users user = userService.findById(username);
                 String password =pe.encode(user.getPassword());
-                String role = user.getRolesList().getId();
+                Integer role = user.getRolesList().getId().ordinal();
                 return User.withUsername(username).password(password).roles(String.valueOf(role)).build();
             }catch (NoSuchElementException e){
                 throw new UsernameNotFoundException("username not found"+username);
@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable();
         http.authorizeRequests()
-                .antMatchers("/admin/users").hasRole("AD")
+                .antMatchers("/admin/users").hasRole(String.valueOf(0))
                 .antMatchers("/admin/**").authenticated()
                 .anyRequest().permitAll();
         http.formLogin()

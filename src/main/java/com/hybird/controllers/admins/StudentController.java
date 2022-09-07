@@ -1,8 +1,6 @@
-package com.hybird.admin.controller;
+package com.hybird.controllers.admins;
 
 import com.hybird.entities.Students;
-import com.hybird.entities.Users;
-import com.hybird.repository.StudentRepository;
 import com.hybird.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.hybird.admin.controller;
+package com.hybird.controllers.admins;
 
 import com.hybird.entities.Subjects;
 import com.hybird.service.SubjectService;

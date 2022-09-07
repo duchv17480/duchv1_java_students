@@ -1,7 +1,7 @@
 package com.hybird.service;
 
 import com.hybird.entities.Marks;
-import com.hybird.repository.MarksRepository;
+import com.hybird.repositories.MarksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

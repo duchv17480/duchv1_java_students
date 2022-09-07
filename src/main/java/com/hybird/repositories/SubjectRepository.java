@@ -1,4 +1,4 @@
-package com.hybird.repository;
+package com.hybird.repositories;
 
 import com.hybird.entities.Subjects;
 import org.springframework.data.jpa.repository.JpaRepository;

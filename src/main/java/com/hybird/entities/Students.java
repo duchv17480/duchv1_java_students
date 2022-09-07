@@ -1,5 +1,6 @@
 package com.hybird.entities;
 
+import com.hybird.enums.EnumGender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +36,7 @@ public class Students {
     @Column(name = "birth_day")
     private String birthDay;
 
-    private String gender;
+    private EnumGender gender;
 
     @NotBlank(message = "Can not be empty")
     @Column(name = "birth_place")
