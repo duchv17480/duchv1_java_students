@@ -11,7 +11,7 @@
       <div class="mb-3">
         <label class="form-label">Subject:</label>
         <select th:field="*{subjectsId}" class="form-control">
-          <option th:each="i : ${subjects}" th:value="${i.id}" th:text="${i.name}"></option>
+          <option th:each="i : ${subject}" th:value="${i.id}" th:text="${i.name}"></option>
         </select>
       </div>
       <div class="mb-3">

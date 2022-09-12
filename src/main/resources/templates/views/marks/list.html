@@ -13,7 +13,7 @@
             <tbody>
             <tr th:each="list : ${list}">
                 <td th:text="${list.studentId.lastName}"></td>
-                <td th:text="${list.subjectsId.name}"></td>
+                <td th:text="${list.getSubjectId.name}"></td>
                 <td th:text="${list.mark}"></td>
                 <td><a th:href="@{marks/edit/{id}(id=${list.id})}" class="btn btn-primary">Edit</a></td>
                 <td>

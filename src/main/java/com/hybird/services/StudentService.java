@@ -1,6 +1,6 @@
-package com.hybird.service;
+package com.hybird.services;
 
-import com.hybird.entities.Students;
+import com.hybird.entities.Student;
 import com.hybird.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +13,12 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    public List<Students> findAll() {
+    public List<Student> findAll() {
         return studentRepository.findAll();
     }
 
-    public Students create(Students students) {
-        return studentRepository.save(students);
+    public Student create(Student student) {
+        return studentRepository.save(student);
     }
 
     public void delete(Integer id) {
@@ -26,7 +26,7 @@ public class StudentService {
     }
 
 
-    public Optional<Students> findById(Integer id) {
+    public Optional<Student> findById(Integer id) {
        return studentRepository.findById(id);
     }
 }

@@ -1,81 +1,95 @@
 <div xmlns:th="http://www.thymeleaf.org" th:replace="~{/views/layout/index :: dynamic (~{::main})}">
     <main>
-        <form th:action="@{/admin/students/store}" th:object="${students}" method="post" class="needs-validation" novalidate>
+        <form th:action="@{/admin/students/store}" th:object="${student}" method="post" class="needs-validation"
+              novalidate enctype="multipart/form-data">
             <h1>Create New Student</h1>
             <div class="row">
-                <div class="mb-3 col-6">
-                    <label class="form-label">First name:</label>
-                    <input type="text" class="form-control" placeholder="first name" th:field="*{firstName}" required>
-                    <div class="invalid-feedback">Please enter a valid First Name.</div>
-                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <label class="form-label">First name:</label>
+                            <input type="text" class="form-control" placeholder="first name" th:field="*{firstName}"
+                                   required>
+                            <div class="invalid-feedback">Please enter a valid First Name.</div>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Last name:</label>
+                            <input type="text" class="form-control" placeholder="last name" th:field="*{lastName}"
+                                   required>
+                            <div class="invalid-feedback">Please enter your Last Name.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Birth day:</label>
+                            <input type="date" class="form-control" placeholder="birth day" th:field="*{birthDay}"
+                                   required>
+                            <div class="invalid-feedback">Please enter your Birth day</div>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Gender:</label>
+                            <select th:field="*{gender}" class="form-select">
+                                <option value="MALE" th:text="Male"></option>
+                                <option value="FEMALE" th:text="Female"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Birth place:</label>
+                            <input type="text" class="form-control" placeholder="birthday" th:field="*{birthPlace}"
+                                   required>
+                            <div class="invalid-feedback">Please enter your Birth of Place.</div>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-control" placeholder="address" th:field="*{address}"
+                                   required>
+                            <div class="invalid-feedback">Please enter your Address.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Phone</label>
+                            <input type="text" class="form-control" placeholder="phone" th:field="*{phone}"
+                                   pattern="^\d{10}$"
+                                   required>
+                            <div class="invalid-feedback">Nhạp Dung sdt</div>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Entry point</label>
+                            <input class="form-control" placeholder="entrypoint" th:field="*{entryPont}"
+                                   pattern="^[0-9]$|^0[1-9]$|^1[0-9]$|^2[0-9]$|^3[0-9]$|^40$" required>
+                            <div class="invalid-feedback">0 to 40</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Enrollment object</label>
+                            <select th:field="*{enrollmentObj}" class="form-select">
+                                <option th:value="'1'" th:text="Ưu_Tiên"></option>
+                                <option th:value="'2'" th:text="K_Ưu_Tiên"></option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Section:</label>
+                            <select th:field="*{section}" class="form-select">
+                                <option th:value="'HN'" th:text="Ha_Noi"></option>
+                                <option th:value="'DN'" th:text="Da_Nang"></option>
+                                <option th:value="'HCM'" th:text="Ho_Chi_Minh"></option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3 col-6">
-                    <label class="form-label">Last name:</label>
-                    <input type="text" class="form-control" placeholder="last name" th:field="*{lastName}" required>
-                    <div class="invalid-feedback">Please enter your Last Name.</div>
-                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="mb-3 col-6">
-                    <label class="form-label">Birth day:</label>
-                    <input type="date" class="form-control" placeholder="birth day" th:field="*{birthDay}" required>
-                    <div class="invalid-feedback">Please enter your Birth day</div>
-                    <span th:if="${#fields.hasErrors('birthDay')}" th:errors="*{birthDay}" class="text-danger"></span>
-                </div>
-                <div class="mb-3 col-6">
-                    <label class="form-label">Gender:</label>
-                    <select th:field="*{gender}" class="form-select">
-                        <option value="MALE" th:text="Male"></option>
-                        <option value="FEMALE" th:text="Female"></option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="mb-3 col-6">
-                    <label class="form-label">Birth place:</label>
-                    <input type="text" class="form-control" placeholder="birthday" th:field="*{birthPlace}" required>
-                    <div class="invalid-feedback">Please enter your Birth of Place.</div>
-                    <span th:if="${#fields.hasErrors('birthPlace')}" th:errors="*{birthPlace}"
-                          class="text-danger"></span>
-                </div>
-                <div class="mb-3 col-6">
-                    <label class="form-label">Address</label>
-                    <input type="text" class="form-control" placeholder="address" th:field="*{address}" required>
-                    <div class="invalid-feedback">Please enter your Address.</div>
-                    <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="mb-3 col-6">
-                    <label class="form-label">Phone</label>
-                    <input type="text" class="form-control" placeholder="phone" th:field="*{phone}" pattern="^\d{10}$"
-                           required>
-                    <div class="invalid-feedback">Nhạp Dung sdt</div>
-                    <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="text-danger"></span>
-                </div>
-                <div class="mb-3 col-6">
-                    <label class="form-label">Entry point</label>
-                    <input class="form-control" placeholder="entrypoint" th:field="*{entryPont}"pattern="^[0-9]$|^0[1-9]$|^1[0-9]$|^2[0-9]$|^3[0-9]$|^40$" required>
-                    <div class="invalid-feedback">0 to 40</div>
-                    <span th:if="${#fields.hasErrors('entryPont')}" th:errors="*{entryPont}" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="mb-3 col-6">
-                    <label class="form-label">Enrollment object</label>
-                    <select th:field="*{enrollmentObj}" class="form-select">
-                        <option th:value="'1'" th:text="Ưu_Tiên"></option>
-                        <option th:value="'2'" th:text="K_Ưu_Tiên"></option>
-                    </select>
-                </div>
-                <div class="mb-3 col-6">
-                    <label class="form-label">Section:</label>
-                    <select th:field="*{section}" class="form-select">
-                        <option th:value="'HN'" th:text="Ha_Noi"></option>
-                        <option th:value="'DN'" th:text="Da_Nang"></option>
-                        <option th:value="'HCM'" th:text="Ho_Chi_Minh"></option>
-                    </select>
+                <div class="col-4">
+                    <div class="border border-primary mt-5 text-center">
+                        <img class="img-fluid mt-2" src="https://scontent.fhan14-3.fna.fbcdn.net/v/t1.6435-9/118351950_226757722117513_5102223058424653919_n.jpg?stp=dst-jpg_p526x296&_nc_cat=109&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Cqzh5kt3L18AX_KlO12&_nc_ht=scontent.fhan14-3.fna&oh=00_AT-0ozcPWCReI2EL2pzCTO-9YqjIDoq4G_PQJPuMDk6j_A&oe=633E1881" width="200px" id="image">
+                        <div class="form-group mt-3">
+                            <input name="imageFile" onchange="chooseFile(this)" type="file"
+                                   class="form-control"/>
+                            <h3>IMAGE</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -100,6 +114,16 @@
                     });
                 }, false);
             })();
+
+            function chooseFile(fileInput) {
+                if (fileInput.files && fileInput.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#image').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(fileInput.files[0]);
+                }
+            }
         </script>
     </main>
 </div>

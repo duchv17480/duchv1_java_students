@@ -15,7 +15,7 @@
                 <td th:text="${list.name}"></td>
                 <td th:text="${list.credits}"></td>
                 <td th:text="${list.semester}"></td>
-                <td><a th:href="@{users/edit/{id}(id=${list.id})}" class="btn btn-primary">Edit</a></td>
+                <td><a th:href="@{user/edit/{id}(id=${list.id})}" class="btn btn-primary">Edit</a></td>
                 <td>
                     <input type="hidden" class="subject_id" th:value="${list.id}">
                     <a class="btn btn-danger delete">Delete</a>

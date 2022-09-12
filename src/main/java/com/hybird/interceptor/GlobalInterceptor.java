@@ -1,6 +1,6 @@
 package com.hybird.interceptor;
 
-import com.hybird.service.SubjectService;
+import com.hybird.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;

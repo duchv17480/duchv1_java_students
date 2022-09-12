@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class Users {
+public class User {
     @Id
     @NotBlank(message = "* user name not empty")
     @Column(name = "user_name")
@@ -29,6 +29,6 @@ public class Users {
 
     private Integer status = 1;
 
-    @OneToOne(mappedBy = "users")
-    private Roles rolesList;
+    @OneToOne(mappedBy = "user")
+    private Role roleList;
 }

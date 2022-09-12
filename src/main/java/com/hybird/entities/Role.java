@@ -14,8 +14,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table()
-public class Roles {
+@Table(name = "roles")
+public class Role {
     @Id
     private EnumRole id;
 
@@ -23,5 +23,5 @@ public class Roles {
 
     @OneToOne
     @JoinColumn(name = "username")
-    private Users users;
+    private User user;
 }

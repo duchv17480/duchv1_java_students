@@ -1,8 +1,8 @@
 <div class="panel panel-primary">
-    <div class="panel-heading">
-        <b class="glyphicon glyphicon-briefcase"></b> Click to Marks
-    </div>
     <div class="list-group">
+        <div class="panel-heading">
+            <b class="glyphicon glyphicon-briefcase"></b> Click to Marks
+        </div>
         <th:block th:each="c:${subjects}">
             <a th:href="@{|/admin/marks?sid=${c.id}|}" class="list-group-item">
                 <b class="	glyphicon glyphicon-gift"></b>

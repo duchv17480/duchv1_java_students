@@ -1,6 +1,6 @@
 package com.hybird.controllers.admins;
 
-import com.hybird.entities.Users;
+import com.hybird.entities.User;
 import com.hybird.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,21 +30,21 @@ public class UserController {
     }
 
     @GetMapping("/create")
-    public String create(Users users) {
+    public String create(User user) {
         return "views/users/create";
     }
 
     @PostMapping("/store")
-    public String store(Model model, @Valid Users users, BindingResult result) {
+    public String store(Model model, @Valid User user, BindingResult result) {
         if (result.hasErrors()){
             return "views/users/create";
         }
-        userRepository.save(users);
+        userRepository.save(user);
         return "redirect:/admin/users";
     }
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, Model model) {
-        Users user = userRepository.findById(id)
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 
         model.addAttribute("users", user);
@@ -52,12 +52,12 @@ public class UserController {
     }
 
     @PostMapping("/update/{id}")
-    public String update(Model model, @Valid Users users, BindingResult result,@PathVariable("id")String id) {
+    public String update(Model model, @Valid User user, BindingResult result, @PathVariable("id")String id) {
         if (result.hasErrors()){
-            users.setUsername(id);
+            user.setUsername(id);
             return "views/users/edit";
         }
-        userRepository.save(users);
+        userRepository.save(user);
         return "redirect:/admin/users";
     }
 
@@ -75,10 +75,10 @@ public class UserController {
             model.addAttribute("message","Pass confirm khong khop");
             return "views/users/changePass";
         }else {
-            Users users = userRepository.findById(request.getRemoteUser()).get();
-            if (users.getPassword().equals(pass_old.trim())){
-                users.setPassword(pass);
-                userRepository.save(users);
+            User user = userRepository.findById(request.getRemoteUser()).get();
+            if (user.getPassword().equals(pass_old.trim())){
+                user.setPassword(pass);
+                userRepository.save(user);
                 return "redirect:/view";
             }else {
                 model.addAttribute("message","Password sai roi");

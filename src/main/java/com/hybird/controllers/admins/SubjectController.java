@@ -1,7 +1,7 @@
 package com.hybird.controllers.admins;
 
-import com.hybird.entities.Subjects;
-import com.hybird.service.SubjectService;
+import com.hybird.entities.Subject;
+import com.hybird.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,15 +24,15 @@ public class SubjectController {
         return "views/subjects/list";
     }
     @GetMapping("/create")
-    public String create(Subjects subjects) {
+    public String create(Subject subject) {
         return "views/subjects/create";
     }
     @PostMapping("/store")
-    public String store(@Valid Subjects subjects, BindingResult result) {
+    public String store(@Valid Subject subject, BindingResult result) {
         if(result.hasErrors()){
             return "views/subjects/create";
         }
-        service.save(subjects);
+        service.save(subject);
         return "redirect:/admin/subjects";
     }
     @GetMapping("delete/{id}")

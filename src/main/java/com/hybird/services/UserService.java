@@ -1,6 +1,6 @@
-package com.hybird.service;
+package com.hybird.services;
 
-import com.hybird.entities.Users;
+import com.hybird.entities.User;
 import com.hybird.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public Users findById(String username) {
+    public User findById(String username) {
        return userRepository.findById(username).get();
     }
 }

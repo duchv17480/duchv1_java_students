@@ -1,10 +1,10 @@
 package com.hybird.controllers.admins;
 
 import com.hybird.entities.Marks;
-import com.hybird.repositories.MarksRepository;
-import com.hybird.service.MarksService;
-import com.hybird.service.StudentService;
-import com.hybird.service.SubjectService;
+import com.hybird.repositories.MarkRepository;
+import com.hybird.services.MarkService;
+import com.hybird.services.StudentService;
+import com.hybird.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +17,13 @@ import java.util.Optional;
 public class MarkController {
 
     @Autowired
-    private MarksService marksService;
+    private MarkService markService;
 
     @Autowired
     private StudentService studentService;
 
     @Autowired
-    private MarksRepository marksRepository;
+    private MarkRepository markRepository;
 
     @Autowired
     private SubjectService subjectService;
@@ -31,9 +31,9 @@ public class MarkController {
     @GetMapping
     public String list(Model model, @RequestParam("sid") Optional<Integer> sid){
         if (sid.isPresent()) {
-            model.addAttribute("list",marksRepository.findMarks(sid.get()));
+            model.addAttribute("list", markRepository.findMarks(sid.get()));
         }else {
-            model.addAttribute("list",marksService.findAll());
+            model.addAttribute("list", markService.findAll());
         }
         return "/views/marks/list";
     }
@@ -45,12 +45,12 @@ public class MarkController {
     }
     @PostMapping("/store")
     public String store(Marks marks) {
-        marksService.save(marks);
+        markService.save(marks);
         return "redirect:/admin/marks";
     }
     @GetMapping("delete/{id}")
     public String delete(@PathVariable("id")Integer id){
-        marksService.delete(id);
+        markService.delete(id);
         return "redirect:/admin/marks";
     }
     @GetMapping("/edit/{id}")
@@ -62,7 +62,7 @@ public class MarkController {
     }
     @PostMapping("/update/{id}")
     public String update(Marks marks) {
-        marksService.save(marks);
+        markService.save(marks);
         return "redirect:/admin/marks";
     }
 }

@@ -1,7 +1,7 @@
 <div xmlns:th="http://www.thymeleaf.org" th:replace="~{/views/layout/index :: dynamic (~{::main})}">
     <main>
         <h2 class="text-center">CREATE SUBJECT</h2>
-        <form th:action="@{/admin/subjects/store}" th:object="${subjects}" method="post">
+        <form th:action="@{/admin/subjects/store}" th:object="${subject}" method="post">
             <div class="mb-3 mt-3">
                 <label class="form-label">Name:</label>
                 <input type="text" class="form-control" th:field="*{name}">

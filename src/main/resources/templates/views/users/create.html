@@ -1,7 +1,7 @@
 <div xmlns:th="http://www.thymeleaf.org" th:replace="~{/views/layout/index :: dynamic (~{::main})}">
     <main>
         <h2 class="text-center">CREATE USER</h2>
-        <form th:action="@{/admin/users/store}" th:object="${users}" method="post">
+        <form th:action="@{/admin/users/store}" th:object="${user}" method="post">
             <div class="mb-3 mt-3">
                 <label class="form-label">User name</label>
                 <input type="text" class="form-control" th:field="*{username}" id="email" placeholder="Enter username">

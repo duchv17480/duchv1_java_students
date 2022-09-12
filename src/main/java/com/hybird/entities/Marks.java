@@ -17,11 +17,11 @@ public class Marks {
 
     @ManyToOne
     @JoinColumn(name = "student_id")
-    Students studentId;
+    Student studentId;
 
     @ManyToOne
     @JoinColumn(name = "subject_id")
-    Subjects subjectsId;
+    Subject subjectId;
 
     private Integer mark;
 }
