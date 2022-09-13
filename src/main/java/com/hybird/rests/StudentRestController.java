@@ -34,7 +34,7 @@ public class StudentRestController {
         studentService.create(student);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+// viet tai lieu api input output , ma loi
     @DeleteMapping("/{id}")
     public ResponseEntity<Student> deleteCategory(@PathVariable("id") Integer id) {
         Optional<Student> studentsOptional = studentService.findById(id);

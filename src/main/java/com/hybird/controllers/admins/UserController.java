@@ -43,7 +43,7 @@ public class UserController {
         return "redirect:/admin/users";
     }
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") String id, Model model) {
+    public String edit(@PathVariable("id") Integer id, Model model) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 
@@ -62,7 +62,7 @@ public class UserController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") String id, Model model) {
+    public String deleteUser(@PathVariable("id") Integer id, Model model) {
         userRepository.deleteById(id);
         return "redirect:/admin/users";
     }
@@ -75,7 +75,7 @@ public class UserController {
             model.addAttribute("message","Pass confirm khong khop");
             return "views/users/changePass";
         }else {
-            User user = userRepository.findById(request.getRemoteUser()).get();
+            User user = userRepository.findName(request.getRemoteUser());
             if (user.getPassword().equals(pass_old.trim())){
                 user.setPassword(pass);
                 userRepository.save(user);

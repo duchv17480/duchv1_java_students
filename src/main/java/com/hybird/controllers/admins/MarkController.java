@@ -40,7 +40,7 @@ public class MarkController {
     @GetMapping("create")
     private String create(Marks marks,Model model){
         model.addAttribute("listStudent",studentService.findAll());
-        model.addAttribute("subjects",subjectService.findAll());
+        model.addAttribute("subject",subjectService.findAll());
         return "/views/marks/create";
     }
     @PostMapping("/store")
@@ -56,7 +56,7 @@ public class MarkController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Marks marks, Model model) {
         model.addAttribute("listStudent",studentService.findAll());
-        model.addAttribute("subjects",subjectService.findAll());
+        model.addAttribute("subject",subjectService.findAll());
         model.addAttribute("marks", marks);
         return "views/marks/edit";
     }

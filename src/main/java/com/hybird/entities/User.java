@@ -1,5 +1,6 @@
 package com.hybird.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -15,20 +19,26 @@ import javax.validation.constraints.Size;
 @Table(name = "users")
 public class User {
     @Id
-    @NotBlank(message = "* user name not empty")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @NotBlank(message = "{NotBlank.user.username}")
     @Column(name = "user_name")
     private String username;
 
-    @NotBlank(message = "* password not empty")
-    @Size(min = 6, message = "pass min 6 characters")
+    @NotBlank(message = "{NotBlank.user.password}")
+    @Size(min = 6, message = "{Size.user.password}")
     private String password;
 
-    @NotBlank(message = "* fullname not empty")
+    @NotBlank(message = "{NotBlank.user.fullname}")
     @Column(name = "full_name")
     private String fullname;
 
     private Integer status = 1;
 
-    @OneToOne(mappedBy = "user")
-    private Role roleList;
+    @ManyToMany
+    @JoinTable(name = "user_role",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
+    Set<Role> role = new HashSet<>();
+
+
 }

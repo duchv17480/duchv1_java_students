@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -17,11 +18,11 @@ import javax.persistence.*;
 @Table(name = "roles")
 public class Role {
     @Id
-    private EnumRole id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private EnumRole name;
 
-    @OneToOne
-    @JoinColumn(name = "username")
-    private User user;
+
 }
