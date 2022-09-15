@@ -1,15 +1,15 @@
 package com.hybird.rests;
 
+import com.hybird.dtos.StudentDto;
 import com.hybird.entities.Student;
-import com.hybird.services.StudentService;
+import com.hybird.services.IStudentService;
+import com.hybird.utils.Constants;
+import com.hybird.utils.Response;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/students")
 public class StudentRestController {
@@ -17,30 +17,69 @@ public class StudentRestController {
     private ModelMapper modelMapper;
 
     @Autowired
-    private StudentService studentService;
+    private IStudentService studentService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Student>> getAllCategory() {
-        return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
+    public ResponseEntity<?> getAll() {
+        return new ResponseEntity<>(studentService.getAll(), HttpStatus.OK);
+    }
+
+    /**
+     * findById
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public @ResponseBody
+    Response findById(@PathVariable Integer id){
+        Student student = studentService.getById(id);
+        if (student == null){
+            return Response.warning(Constants.RESPONSE_CODE.RECORD_DELETED);
+        }
+        return Response.success("Get By Id OK").withData(student);
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody Student student) {
-        // convert DTO to entity
-//        Students studentReq = modelMapper.map(studentDto, Students.class);
-//        Students students = studentService.create(studentReq);
-//        StudentDto studentRes = modelMapper.map(students, StudentDto.class);
-//        return new ResponseEntity<>(studentRes, HttpStatus.CREATED);
-        studentService.create(student);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @ResponseStatus(HttpStatus.CREATED)
+    public @ResponseBody Response save(@RequestBody StudentDto studentDto){
+        Student student = modelMapper.map(studentDto, Student.class);
+        Student studentCreate = studentService.create(student);
+        return Response.success("Created").withData(studentCreate);
     }
-// viet tai lieu api input output , ma loi
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody Response update(@RequestBody StudentDto studentDto,@PathVariable("id")Integer id){
+        Student student = studentService.getById(id);
+        if (student == null){
+            return Response.warning(Constants.RESPONSE_CODE.RECORD_DELETED);
+        }
+        student = modelMapper.map(studentDto, Student.class);
+        Student studentCreate = studentService.create(student);
+        return Response.success("Updated").withData(studentCreate);
+    }
+
+    /**
+     * delete
+     *
+     * @param id
+     * @return
+     */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Student> deleteCategory(@PathVariable("id") Integer id) {
-        Optional<Student> studentsOptional = studentService.findById(id);
-        return studentsOptional.map(students -> {
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody
+    Response delete(@PathVariable Integer id){
+        if (id > 0){
+           Student student = studentService.getById(id);
+            if (student == null){
+                return Response.warning(Constants.RESPONSE_CODE.RECORD_DELETED);
+            }
             studentService.delete(id);
-            return new ResponseEntity<>(students, HttpStatus.OK);
-        }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+            return Response.success(Constants.RESPONSE_CODE.DELETE_SUCCESS,"Xoa thanh cong:"+student.getLastName());
+        }else {
+            return Response.error(Constants.RESPONSE_CODE.ERROR);
+        }
+
     }
 }
+

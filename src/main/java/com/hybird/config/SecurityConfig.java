@@ -39,9 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtEntryPoint jwtEntryPoint;
 
     @Bean
-    public JwtTokenFilter jwtTokenFilter(){
+    public JwtTokenFilter jwtTokenFilter() {
         return new JwtTokenFilter();
     }
+
     @Autowired
     private IUserService userService;
 
@@ -65,6 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        });
         auth.userDetailsService(userDetailService).passwordEncoder(getPasswordEncoder());
     }
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -77,7 +79,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/login").permitAll()
-                .anyRequest().authenticated();
+                .anyRequest().authenticated()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint);
         // Thêm một lớp Filter kiểm tra jwt
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 //        http.csrf().disable().cors().disable();
