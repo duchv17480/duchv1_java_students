@@ -79,7 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/login").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("api/students").authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtEntryPoint);
         // Thêm một lớp Filter kiểm tra jwt
