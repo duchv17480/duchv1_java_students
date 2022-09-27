@@ -12,8 +12,8 @@
             </thead>
             <tbody>
             <tr th:each="list : ${list}">
-                <td th:text="${list.studentId.lastName}"></td>
-                <td th:text="${list.getSubjectId.name}"></td>
+                <td th:text="${list.studentId}"></td>
+                <td th:text="${list.getSubjectId}"></td>
                 <td th:text="${list.mark}"></td>
                 <td><a th:href="@{marks/edit/{id}(id=${list.id})}" class="btn btn-primary">Edit</a></td>
                 <td>
@@ -43,5 +43,6 @@
             </div>
         </table>
         <a th:href="@{marks/create}" class="btn btn-info">Create</a>
+        <a th:href="@{marks/export}" class="btn btn-info">Export to CSV</a>
     </main>
 </div>
