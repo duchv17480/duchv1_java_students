@@ -19,6 +19,7 @@ import javax.mail.MessagingException;
 
 @SpringBootApplication
 @EnableScheduling
+@EnableJpaRepositories("com.hybrid.repositories")
 public class HybridApplication {
 	@Autowired
 	private EmailSenderService emailSenderService;
@@ -30,7 +31,7 @@ public class HybridApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HybridApplication.class, args);
 	}
-	@Scheduled(cron = "0 0 0 * * ?")
+	@Scheduled(fixedRate = 500000000)
 	public void triggerMail() throws MessagingException {
 		emailSenderService.sendMail("duchvph17480@fpt.edu.vn",
 				"This is email body",

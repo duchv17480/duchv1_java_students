@@ -31,7 +31,7 @@ public class Subject {
     @NotNull(message = "{NotNull.subjects.semester}")
     private Integer semester;
 
-    @OneToMany(mappedBy = "subjectId")
-    List<Marks> marksList;
+//    @OneToMany(mappedBy = "subjectId")
+//    List<Marks> marksList;
 
 }

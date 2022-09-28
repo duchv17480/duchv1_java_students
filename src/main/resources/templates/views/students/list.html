@@ -1,6 +1,22 @@
 <div xmlns:th="http://www.thymeleaf.org" th:replace="~{/views/layout/index :: dynamic (~{::main})}">
     <main>
         <h2 class="text-center">Student Manager</h2>
+        <form th:action="@{/admin/students/search}"class="d-flex">
+            <div class="row col-12 mt-2">
+                <div class="col-3">
+                    <select name="find_by" class="form-control">
+                        <option value="lastName">last name</option>
+                        <option value="phone">Phone</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex">
+                        <input class="form-control " type="search" placeholder="Search" aria-label="Search" name="searchName">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
         <table class="table table-hover">
             <thead>
             <tr>
