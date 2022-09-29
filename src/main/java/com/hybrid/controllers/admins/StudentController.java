@@ -44,7 +44,7 @@ public class StudentController {
     @GetMapping("/search")
     public String search(Model model) {
         String name = request.getParameter("searchName");
-        Iterable<Student> list = searchRepository.findStudentByLastName(name);
+        Iterable<Student> list = searchRepository.findStudentByLastNameLikeIgnoreCaseOrAddressLikeIgnoreCaseOrPhoneLike(name,name,name);
         model.addAttribute("list", list);
         return "views/students/list";
     }

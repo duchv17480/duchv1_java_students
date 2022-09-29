@@ -3,15 +3,9 @@
         <h2 class="text-center">Student Manager</h2>
         <form th:action="@{/admin/students/search}"class="d-flex">
             <div class="row col-12 mt-2">
-                <div class="col-3">
-                    <select name="find_by" class="form-control">
-                        <option value="lastName">last name</option>
-                        <option value="phone">Phone</option>
-                    </select>
-                </div>
-                <div class="col-6">
+                <div class="col-12">
                     <div class="d-flex">
-                        <input class="form-control " type="search" placeholder="Search" aria-label="Search" name="searchName">
+                        <input class="form-control " type="search" placeholder="Search by name or phone or address" aria-label="Search" name="searchName">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </div>
                 </div>
@@ -45,7 +39,7 @@
                 <td th:text="${list.entryPont}"></td>
                 <td th:text="${list.enrollmentObj==1?'Ưu tiên':'K ưu tiên'}"></td>
                 <td th:text="${list.section}"></td>
-                <td><a th:href="@{students/edit/{id}(id=${list.id})}" class="btn btn-primary">Edit</a></td>
+                <td><a th:href="@{/admin/students/edit/{id}(id=${list.id})}" class="btn btn-primary">Edit</a></td>
                 <td>
                     <input type="hidden" class="student_id" th:value="${list.id}">
                     <a class="btn btn-danger deleteStudent">Delete</a>
@@ -72,6 +66,6 @@
                 </div>
             </div>
         </table>
-        <a th:href="@{students/create}" class="btn btn-info">Create</a>
+        <a th:href="@{/admin/students/create}" class="btn btn-info">Create</a>
     </main>
 </div>

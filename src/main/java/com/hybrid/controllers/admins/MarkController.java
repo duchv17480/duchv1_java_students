@@ -88,7 +88,7 @@ public class MarkController {
         response.setContentType("text/csv");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String currentDateTime = dateFormatter.format(new Date());
-        String fileName = "marks"+currentDateTime+".csv";
+        String fileName = "marks"+currentDateTime+".xlsx";
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=" + fileName;
         response.setHeader(headerKey, headerValue);

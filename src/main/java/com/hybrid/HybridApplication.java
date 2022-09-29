@@ -31,12 +31,12 @@ public class HybridApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HybridApplication.class, args);
 	}
-	@Scheduled(fixedRate = 500000000)
-	public void triggerMail() throws MessagingException {
-		emailSenderService.sendMail("duchvph17480@fpt.edu.vn",
-				"This is email body",
-				"This is email subject");
-
-	}
+//	@Scheduled(fixedRate = 500000000)
+//	public void triggerMail() throws MessagingException {
+//		emailSenderService.sendMail("duchvph17480@fpt.edu.vn",
+//				"This is email body",
+//				"This is email subject");
+//
+//	}
 
 }

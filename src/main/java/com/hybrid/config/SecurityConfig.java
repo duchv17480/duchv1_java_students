@@ -70,9 +70,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/login").permitAll()
-                .antMatchers("api/students").authenticated()
-                .and()
-                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint);
+                .antMatchers("/view","/security/login/form").permitAll()
+                .antMatchers("/api/students").authenticated()
+                .anyRequest().authenticated()
+                .and();
+//                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint);
+        http.oauth2Login()
+                .loginPage("/security/login/form")
+                .defaultSuccessUrl("/oauth2/login/success", false)
+                .failureUrl("/security/login/error")
+                .authorizationEndpoint()
+                .baseUri("/oauth2/authorization");
+        http.exceptionHandling()
+                .accessDeniedPage("/security/unauthorized");
+        http.logout()
+                .logoutUrl("/security/logoff")
+                .logoutSuccessUrl("/security/logoff/success");
         // Thêm một lớp Filter kiểm tra jwt
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 //        http.csrf().disable().cors().disable();
@@ -92,7 +105,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.logout()
 //                .logoutUrl("/security/logoff")
 //                .logoutSuccessUrl("/security/logoff/success");
-
     }
 
     @Override

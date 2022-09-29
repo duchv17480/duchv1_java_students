@@ -15,9 +15,9 @@ public class ScheduleTaskFixedRate {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(fixedRate = 500000) //Thuộc tính fixedRate dùng để chỉ định một khoảng thời gian cố định mà công việc sẽ được thực hiện định kỳ.
-    public void reportCurrentTime() {
-        log.info("The time is now {}", dateFormat.format(new Date()));
-    }
+//    @Scheduled(fixedRate = 500000) //Thuộc tính fixedRate dùng để chỉ định một khoảng thời gian cố định mà công việc sẽ được thực hiện định kỳ.
+//    public void reportCurrentTime() {
+//        log.info("The time is now {}", dateFormat.format(new Date()));
+//    }
 
 }
