@@ -21,7 +21,7 @@ public class LoginController {
     @RequestMapping("/security/login/success")
     public String loginSuccess(Model model) {
         model.addAttribute("message", "Đăng nhập thành công!");
-        return "views/layout/login";
+        return "redirect:/view";
     }
 
     @RequestMapping("/security/login/error")
@@ -38,14 +38,13 @@ public class LoginController {
 
     @RequestMapping("/security/logoff/success")
     public String logoffSuccess(Model model) {
-        model.addAttribute("message", "Bạn đã đăng xuất!");
-        return "views/layout/login";
+        return "redirect:/view";
     }
 
     @RequestMapping("oauth2/login/success")
     public String success(OAuth2AuthenticationToken token) {
         userService.loginFromOAuth2(token);
-        return "views/layout/login";
+        return "redirect:/view";
     }
 }
 
