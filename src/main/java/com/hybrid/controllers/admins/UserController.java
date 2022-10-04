@@ -2,6 +2,7 @@ package com.hybrid.controllers.admins;
 
 import com.hybrid.entities.User;
 import com.hybrid.repositories.UserRepository;
+import com.hybrid.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +18,12 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/admin/users")
 public class UserController {
+    private static final String FILE_STORE_DIR = "/home/duchv/Desktop/duchv1_java_students/src/main/resources/static/storage";
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private IUserService userService;
 
     @Autowired
     HttpServletRequest request;
@@ -36,12 +41,13 @@ public class UserController {
 
     @PostMapping("/store")
     public String store(Model model, @Valid User user, BindingResult result) {
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "views/users/create";
         }
-        userRepository.save(user);
+        userService.save(user,FILE_STORE_DIR);
         return "redirect:/admin/users";
     }
+
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
         User user = userRepository.findById(id)
@@ -52,8 +58,8 @@ public class UserController {
     }
 
     @PostMapping("/update/{id}")
-    public String update(Model model, @Valid User user, BindingResult result, @PathVariable("id")String id) {
-        if (result.hasErrors()){
+    public String update(Model model, @Valid User user, BindingResult result, @PathVariable("id") String id) {
+        if (result.hasErrors()) {
             user.setUsername(id);
             return "views/users/edit";
         }
@@ -66,28 +72,30 @@ public class UserController {
         userRepository.deleteById(id);
         return "redirect:/admin/users";
     }
+
     @PostMapping("changePassword")
-    public String changePassword(Model model){
+    public String changePassword(Model model) {
         String pass = request.getParameter("pass_new");
         String pass_confirm = request.getParameter("pass_confirm");
         String pass_old = request.getParameter("pass_old");
-        if (!pass.trim().equals(pass_confirm.trim())){
-            model.addAttribute("message","Pass confirm khong khop");
+        if (!pass.trim().equals(pass_confirm.trim())) {
+            model.addAttribute("message", "Pass confirm khong khop");
             return "views/users/changePass";
-        }else {
+        } else {
             User user = userRepository.findName(request.getRemoteUser());
-            if (user.getPassword().equals(pass_old.trim())){
+            if (user.getPassword().equals(pass_old.trim())) {
                 user.setPassword(pass);
                 userRepository.save(user);
                 return "redirect:/view";
-            }else {
-                model.addAttribute("message","Password sai roi");
+            } else {
+                model.addAttribute("message", "Password sai roi");
                 return "views/users/changePass";
             }
         }
     }
+
     @GetMapping("formChange")
-    public String form(){
+    public String form() {
         return "views/users/changePass";
     }
 

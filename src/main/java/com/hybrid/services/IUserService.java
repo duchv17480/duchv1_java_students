@@ -9,5 +9,5 @@ public interface IUserService {
     public void loginFromOAuth2(OAuth2AuthenticationToken token);
     Optional<User> findByUsername(String s);
     Boolean existsByUsername(String username);
-    User save(User user);
+    User save(User user,String storeLocation);
 }

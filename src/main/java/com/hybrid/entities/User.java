@@ -3,6 +3,7 @@ package com.hybrid.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -31,6 +32,11 @@ public class User {
     @NotBlank(message = "{NotBlank.user.fullname}")
     @Column(name = "full_name")
     private String fullname;
+
+    @Column(name = "photo")
+    private String photo;
+    @Transient
+    MultipartFile file;
 
     private Integer status = 1;
 

@@ -7,6 +7,7 @@
                 <th>User name</th>
                 <th>Password</th>
                 <th>Full Name</th>
+                <th>Image</th>
                 <th>Status</th>
                 <th colspan="2">Thao Tac</th>
             </tr>
@@ -16,10 +17,11 @@
                 <td th:text="${list.username}"></td>
                 <td th:text="${list.password}"></td>
                 <td th:text="${list.fullname}"></td>
+                <td><img th:src="@{/storage/${list.photo}}"></td>
                 <td th:text="${list.status==0?'Un active':'Active'}"></td>
-                <td><a th:href="@{users/edit/{id}(id=${list.username})}" class="btn btn-primary">Edit</a></td>
+                <td><a th:href="@{users/edit/{id}(id=${list.id})}" class="btn btn-primary">Edit</a></td>
                 <td>
-                    <input type="hidden" class="user_id" th:value="${list.username}">
+                    <input type="hidden" class="user_id" th:value="${list.id}">
                     <a class="btn btn-danger delete">Delete</a>
                 </td>
             </tr>
